@@ -41,9 +41,9 @@ function setChaincodePath(){
 	case "$LANGUAGE" in
 		"golang")
 		CC_SRC_PATH="github.com/example_cc/go"
-    doctor=$CC_SRC_PATH"/main"
-    patient=$CC_SRC_PATH"/main"
-    pharmacy=$CC_SRC_PATH"/main"
+    doctor=$CC_SRC_PATH"/doctor.go"
+    patient=$CC_SRC_PATH"/patient.go"
+    pharmacy=$CC_SRC_PATH"/pharmacy.go"
 		;;
 		"node")
 		CC_SRC_PATH="$PWD/artifacts/src/gfithub.com/example_cc/node"
