@@ -41,12 +41,12 @@ function setChaincodePath(){
 	case "$LANGUAGE" in
 		"golang")
 		CC_SRC_PATH="github.com/example_cc/go"
-    doctor=$CC_SRC_PATH"/doctor"
-    patient=$CC_SRC_PATH"/patient"
-    pharmacy=$CC_SRC_PATH"/pharmacy"
+    doctor=$CC_SRC_PATH"/main"
+    patient=$CC_SRC_PATH"/main"
+    pharmacy=$CC_SRC_PATH"/main"
 		;;
 		"node")
-		CC_SRC_PATH="$PWD/artifacts/src/github.com/example_cc/node"
+		CC_SRC_PATH="$PWD/artifacts/src/gfithub.com/example_cc/node"
 		;;
 		*) printf "\n ------ Language $LANGUAGE is not supported yet ------\n"$
 		exit 1
