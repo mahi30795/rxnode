@@ -41,6 +41,9 @@ function setChaincodePath(){
 	case "$LANGUAGE" in
 		"golang")
 		CC_SRC_PATH="github.com/example_cc/go"
+    doctor=$CC_SRC_PATH+"/doctor"
+    patient=$CC_SRC_PATH+"/patient"
+    pharmacy=$CC_SRC_PATH+"/pharmacy"
 		;;
 		"node")
 		CC_SRC_PATH="$PWD/artifacts/src/github.com/example_cc/node"
@@ -180,7 +183,7 @@ curl -s -X POST \
   -d "{
 	\"peers\": [\"peer0.org1.rxmed.com\",\"peer1.org1.rxmed.com\",\"peer2.org1.rxmed.com\",\"peer3.org1.rxmed.com\"],
 	\"chaincodeName\":\"mycc\",
-	\"chaincodePath\":\"$CC_SRC_PATH\"doctor,
+	\"chaincodePath\":\"$doctor\",
 	\"chaincodeType\": \"$LANGUAGE\",
 	\"chaincodeVersion\":\"v0\"
 }"
@@ -196,7 +199,7 @@ curl -s -X POST \
   -d "{
 	\"peers\": [\"peer0.org2.rxmed.com\",\"peer1.org2.rxmed.com\",\"peer2.org2.rxmed.com\",\"peer3.org2.rxmed.com\"],
 	\"chaincodeName\":\"mycc1\",
-	\"chaincodePath\":\"$CC_SRC_PATH\"pharmacy,
+	\"chaincodePath\":\"$pharmacy\",
 	\"chaincodeType\": \"$LANGUAGE\",
 	\"chaincodeVersion\":\"v0\"
 }"
@@ -212,7 +215,7 @@ curl -s -X POST \
   -d "{
 	\"peers\": [\"peer0.org3.rxmed.com\",\"peer1.org3.rxmed.com\",\"peer2.org3.rxmed.com\",\"peer3.org3.rxmed.com\"],
 	\"chaincodeName\":\"mycc\",
-	\"chaincodePath\":\"$CC_SRC_PATH\"patient,
+	\"chaincodePath\":\"$patient\",
 	\"chaincodeType\": \"$LANGUAGE\",
 	\"chaincodeVersion\":\"v0\"
 }"
