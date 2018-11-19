@@ -233,7 +233,7 @@ doctorJSON=$( jq -n \
                   --arg id "$id" \
                   --arg dob "$dob" \
                   --arg bloodgroup "$bloodgroup" \
-                  '{name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup}' )
+                  {name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup} )
 echo $doctorJSON
 echo
 curl -s -X POST \
@@ -245,7 +245,7 @@ curl -s -X POST \
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
   \"fcn\":\"doc_create\",
-	\"args\":[\"a\",\"100\",\"$doctor\"]
+	\"args\":[\"a\",\"100\",\"$doctorJSON\"]
 }"
 echo
 echo
