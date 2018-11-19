@@ -245,7 +245,7 @@ curl -s -X POST \
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
   \"fcn\":\"doc_create\",
-	\"args\":[\"a\",\"100\",\"200\"]
+	\"args\":[\"a\",\"100\",\"$doctorJSON\"]
 }"
 echo
 echo
