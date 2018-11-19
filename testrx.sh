@@ -228,13 +228,8 @@ id="doc101"
 dob="02-07-1988"
 bloodgroup="O+ve"
 
-doctorJSON=$( jq -n \
-                  --arg name "$name" \
-                  --arg id "$id" \
-                  --arg dob "$dob" \
-                  --arg bloodgroup "$bloodgroup" \
-                  '{name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup}' )
-doctorJSON="$doctorJSON"
+doc={"name":"$name","id":"$id","dob":"$dob","bloodgroup":"$bloodgroup"}
+doctorJSON="$doc"
 echo
 curl -s -X POST \
   http://localhost:4000/channels/rxmed/chaincodes \
