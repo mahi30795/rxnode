@@ -223,6 +223,7 @@ echo
 echo
 
 echo "POST instantiate chaincode on Org1"
+doctor = "{\"name\":\"VRA\",\"id\":\"doc101\",\"dob\":\"02-07-1988\",\"bloodgroup\":\"O+ve\"}"
 echo
 curl -s -X POST \
   http://localhost:4000/channels/rxmed/chaincodes \
@@ -232,7 +233,8 @@ curl -s -X POST \
 	\"chaincodeName\":\"mycc\",
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
-	\"args\":[\"a\",\"100\",\"b\",\"200\"]
+  \"fcn\":\"doc_create\",
+	\"args\":[\"a\",\"100\",\"$doctor\"]
 }"
 echo
 echo
