@@ -223,7 +223,17 @@ echo
 echo
 
 echo "POST instantiate chaincode on Org1"
-doctor = "{\"name\":\"VRA\",\"id\":\"doc101\",\"dob\":\"02-07-1988\",\"bloodgroup\":\"O+ve\"}"
+name="VRA"
+id="doc101"
+dob="02-07-1988"
+bloodgroup="O+ve"
+
+doctorJSON=$( jq -n \
+                  --arg name "$name" \
+                  --arg id "$id" \
+                  --arg dob "$dob" \
+                  --arg bloodgroup "$bloodgroup" \
+                  '{name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup}' )
 echo
 curl -s -X POST \
   http://localhost:4000/channels/rxmed/chaincodes \
@@ -234,7 +244,7 @@ curl -s -X POST \
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
   \"fcn\":\"doc_create\",
-	\"args\":[\"a\",\"100\",\"$doctor\"]
+	\"args\":[\"a\",\"100\",\"$doctorJSON\"]
 }"
 echo
 echo
