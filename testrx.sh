@@ -234,6 +234,7 @@ doctorJSON=$( jq -n \
                   --arg dob "$dob" \
                   --arg bloodgroup "$bloodgroup" \
                   '{name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup}' )
+echo $doctorJSON
 echo
 curl -s -X POST \
   http://localhost:4000/channels/rxmed/chaincodes \
