@@ -233,8 +233,8 @@ doctorJSON=$( jq -n \
                   --arg id "$id" \
                   --arg dob "$dob" \
                   --arg bloodgroup "$bloodgroup" \
-                  {name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup} )
-echo $doctorJSON
+                  '{name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup}' )
+
 echo
 curl -s -X POST \
   http://localhost:4000/channels/rxmed/chaincodes \
@@ -245,7 +245,7 @@ curl -s -X POST \
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
   \"fcn\":\"doc_create\",
-	\"args\":[\"a\",\"100\",\"$doctorJSON\"]
+	\"args\":[\"a\",\"100\",$doctorJSON]
 }"
 echo
 echo
