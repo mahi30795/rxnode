@@ -230,20 +230,8 @@ bloodgroup="O+ve"
 
 doc={"name":"$name","id":"$id","dob":"$dob","bloodgroup":"$bloodgroup"}
 doctorJSON="$doc"
-echo
-curl -s -X POST \
-  http://localhost:4000/channels/rxmed/chaincodes \
-  -H "authorization: Bearer $ORG1_TOKEN" \
-  -H "content-type: application/json" \
-  -d "{
-	\"chaincodeName\":\"mycc\",
-	\"chaincodeVersion\":\"v0\",
-	\"chaincodeType\": \"$LANGUAGE\",
-  \"fcn\":\"doc_create\",
-	\"args\":[\"a\",\"100\",\"$doctorJSON\"]
-}"
-echo
-echo
+
+echo $doctorJSON
 
 echo "POST invoke chaincode on peers of Org1 and Org2 and Org3"
 echo
@@ -254,7 +242,7 @@ TRX_ID=$(curl -s -X POST \
   -d '{
 	"peers": ["peer0.org1.rxmed.com","peer0.org2.rxmed.com","peer0.org3.rxmed.com"],
 	"fcn":"doc_create",
-	"args":["a","100",'$doxtorJSON']
+	"args":["a","100",'"$doxtorJSON"']
 }')
 echo "Transaction ID is $TRX_ID"
 echo
