@@ -244,6 +244,7 @@ app.post('/channels/:channelName/chaincodes', async function(req, res) {
 	var chaincodeType = req.body.chaincodeType;
 	var fcn = req.body.fcn;
 	var args = req.body.args;
+	console.log(args);
 	logger.debug('peers  : ' + peers);
 	logger.debug('channelName  : ' + channelName);
 	logger.debug('chaincodeName : ' + chaincodeName);
