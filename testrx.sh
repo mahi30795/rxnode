@@ -245,11 +245,11 @@ TRX_ID=$(curl -s -X POST \
   http://localhost:4000/channels/rxmed/chaincodes/mycc \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json" \
-  -d '{
-	"peers": ["peer0.org1.rxmed.com","peer0.org2.rxmed.com","peer0.org3.rxmed.com"],
-	"fcn":"doc_create",
-	"args":["a","100",'"$doxtorJSON"']
-}')
+  -d "{
+	\"peers\": [\"peer0.org1.rxmed.com\",\"peer0.org2.rxmed.com\",\"peer0.org3.rxmed.com\"],
+	\"fcn\":\"doc_create\",
+	\"args\":[\"a\",\"100\",\""$doxtorJSON"\"]
+}")
 echo "Transaction ID is $TRX_ID"
 echo
 echo
