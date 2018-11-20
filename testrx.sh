@@ -228,7 +228,13 @@ id="doc101"
 dob="02-07-1988"
 bloodgroup="O+ve"
 
-doc={"name":"$name","id":"$id","dob":"$dob","bloodgroup":"$bloodgroup"}
+#doc={"name":"$name","id":"$id","dob":"$dob","bloodgroup":"$bloodgroup"}
+doc=$( jq -n -r \
+                  --arg name "$name" \
+                  --arg id "$id" \
+                  --arg dob "$dob" \
+                  --arg bloodgroup "$bloodgroup" \
+                  '{name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup}' )
 doctorJSON="$doc"
 
 echo $doctorJSON
