@@ -248,7 +248,7 @@ TRX_ID=$(curl -s -X POST \
   -d "{
 	\"peers\": [\"peer0.org1.rxmed.com\",\"peer0.org2.rxmed.com\",\"peer0.org3.rxmed.com\"],
 	\"fcn\":\"doc_create\",
-	\"args\":[\"a\",\"100\",\"$doxtorJSON\"]
+	\"args\":[\"a\",\"100\",\"$doctorJSON\"]
 }")
 echo "Transaction ID is $TRX_ID"
 echo
