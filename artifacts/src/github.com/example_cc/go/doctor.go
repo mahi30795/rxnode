@@ -11,9 +11,31 @@ import (
 	pb "github.com/hyperledger/fabric/protos/peer"
 )
 
+type SimpleChaincode struct {
+}
+
 // query
 // Every readonly functions in the ledger will be here
+func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
+	logger.Info("########### example_cc0 Init ###########")
 
+	_, args := stub.GetFunctionAndParameters()
+	logger.info("=========In doc_create========")
+	var newDoc Doc
+	json.Unmarshal([]byte(args[2]), &newDoc)
+	var doc = Doc{Name: newDoc.Name, Id: newDoc.Id, Hospital: newDoc.Hospital, Department: newDoc.Department}
+	docAsBytes, _ := json.Marshal(doc)
+	stub.PutState(args[1], docAsBytes)
+
+	// Notify listeners that an event "eventInvoke" have been executed (check line 19 in the file invoke.go)
+	err := stub.SetEvent("eventCreateDoc", []byte{})
+	if err != nil {
+		return shim.Error(err.Error())
+	}
+
+	return shim.Success(nil)
+
+}
 func (t *SimpleChaincode) doc_query(stub shim.ChaincodeStubInterface, args []string) pb.Response {
 	fmt.Println("########### Doctor query ###########")
 

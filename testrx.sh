@@ -183,7 +183,7 @@ curl -s -X POST \
   -d "{
 	\"peers\": [\"peer0.org1.rxmed.com\",\"peer1.org1.rxmed.com\",\"peer2.org1.rxmed.com\",\"peer3.org1.rxmed.com\"],
 	\"chaincodeName\":\"mycc\",
-	\"chaincodePath\":\"$CC_SRC_PATH\",
+	\"chaincodePath\":\"$doctor\",
 	\"chaincodeType\": \"$LANGUAGE\",
 	\"chaincodeVersion\":\"v0\"
 }"
@@ -246,8 +246,7 @@ curl -s -X POST \
   \"peers\": [\"peer0.org1.rxmed.com\",\"peer0.org2.rxmed.com\",\"peer0.org3.rxmed.com\"],
 	\"chaincodeName\":\"mycc\",
 	\"chaincodeVersion\":\"v0\",
-	\"chaincodeType\": \"$LANGUAGE\",
-	\"fcn\":\"doc_create\",
+	\"chaincodeType\": \"$LANGUAGE\"
 	\"args\":[\"a\",\"100\",\"$doctorJSON\"]
 }"
 
