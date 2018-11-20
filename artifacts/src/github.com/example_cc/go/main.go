@@ -52,7 +52,7 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
 	fmt.Println("########### SimpleChain Init ###########")
 
 	function, _ := stub.GetFunctionAndParameters()
-	shim.Println(function)
+	logger.info(function)
 	if function != "init" {
 		return shim.Error("Unknown function call")
 	}
