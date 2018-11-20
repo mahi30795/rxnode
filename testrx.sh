@@ -220,7 +220,21 @@ curl -s -X POST \
 	\"chaincodeVersion\":\"v0\"
 }"
 echo
+name="VRA"
+id="doc101"
+dob="02-07-1988"
+bloodgroup="O+ve"
 
+doc={"name":"$name","id":"$id","dob":"$dob","bloodgroup":"$bloodgroup"}
+# doc=$( jq -n -r \
+#                  --arg name "$name" \
+                  # --arg id "$id" \
+                  # --arg dob "$dob" \
+                  # --arg bloodgroup "$bloodgroup" \
+                  # '{name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup}' )
+doctorJSON="$doc"
+
+echo $doctorJSON
 echo "POST instantiate chaincode on Org1"
 
 echo
@@ -237,21 +251,7 @@ curl -s -X POST \
 	\"args\":[\"a\",\"100\",\"$doctorJSON\"]
 }"
 
-name="VRA"
-id="doc101"
-dob="02-07-1988"
-bloodgroup="O+ve"
 
-doc={"name":"$name","id":"$id","dob":"$dob","bloodgroup":"$bloodgroup"}
-# doc=$( jq -n -r \
-#                  --arg name "$name" \
-                  # --arg id "$id" \
-                  # --arg dob "$dob" \
-                  # --arg bloodgroup "$bloodgroup" \
-                  # '{name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup}' )
-doctorJSON="$doc"
-
-echo $doctorJSON
 
 echo "POST invoke chaincode on peers of Org1 and Org2 and Org3"
 echo
