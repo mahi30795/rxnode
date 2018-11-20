@@ -41,14 +41,14 @@ var instantiateChaincode = async function(peers, channelName, chaincodeName, cha
 
 		// send proposal to endorser
 		var request = {
-			// targets: peers,
+			targets: peers,
 			chaincodeId: chaincodeName,
 			chaincodeType: chaincodeType,
 			chaincodeVersion: chaincodeVersion,
 			args: args,
 			txId: tx_id
 		};
-
+		console.log(request);
 		logger.debug('Transaction request: ' + JSON.stringify(request));
 		let results = null;
 		if (chaincodeVersion == 'v0') {
