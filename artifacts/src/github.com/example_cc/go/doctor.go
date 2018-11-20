@@ -103,9 +103,7 @@ func (t *SimpleChaincode) doc_invoke(stub shim.ChaincodeStubInterface, args []st
 		return shim.Success(nil)
 	}
 
-
 	// Updating all fields of record
-
 
 	if args[1] == "updateRecord" && len(args) == 4 {
 		fmt.Println("Update All")
@@ -158,7 +156,7 @@ func (s *SimpleChaincode) doc_create(stub shim.ChaincodeStubInterface, args []st
 	if len(args) < 3 {
 		return shim.Error("Incorrect number of arguments. Expecting 3")
 	}
-
+	logger.info("=========In doc_create========")
 	var newDoc Doc
 	json.Unmarshal([]byte(args[2]), &newDoc)
 	var doc = Doc{Name: newDoc.Name, Id: newDoc.Id, Hospital: newDoc.Hospital, Department: newDoc.Department}
