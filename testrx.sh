@@ -233,7 +233,8 @@ curl -s -X POST \
 	\"chaincodeName\":\"mycc\",
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
-	\"args\":[\"\"]
+	\"fcn\":\"doc_create\",
+	\"args\":[\"a\",\"100\",\"$doctorJSON\"]
 }"
 
 name="VRA"
