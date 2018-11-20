@@ -231,7 +231,8 @@ curl -s -X POST \
   -d "{
 	\"chaincodeName\":\"mycc\",
 	\"chaincodeVersion\":\"v0\",
-	\"chaincodeType\": \"$LANGUAGE\"
+	\"chaincodeType\": \"$LANGUAGE\",
+	\"args\":[\"\"]
 }"
 
 name="VRA"
@@ -246,7 +247,6 @@ doc={"name":"$name","id":"$id","dob":"$dob","bloodgroup":"$bloodgroup"}
                   # --arg dob "$dob" \
                   # --arg bloodgroup "$bloodgroup" \
                   # '{name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup}' )
-
 doctorJSON="$doc"
 
 echo $doctorJSON
