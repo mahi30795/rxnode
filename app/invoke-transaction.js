@@ -45,7 +45,7 @@ var invokeChaincode = async function(peerNames, channelName, chaincodeName, fcn,
 			chainId: channelName,
 			txId: tx_id
 		};
-
+		console.log(request);
 		let results = await channel.sendTransactionProposal(request);
 
 		// the returned object has both the endorsement results
