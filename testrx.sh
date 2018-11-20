@@ -220,9 +220,20 @@ curl -s -X POST \
 	\"chaincodeVersion\":\"v0\"
 }"
 echo
-echo
 
 echo "POST instantiate chaincode on Org1"
+
+echo
+curl -s -X POST \
+  http://localhost:4000/channels/rxmed/chaincodes \
+  -H "authorization: Bearer $ORG1_TOKEN" \
+  -H "content-type: application/json" \
+  -d "{
+	\"chaincodeName\":\"mycc\",
+	\"chaincodeVersion\":\"v0\",
+	\"chaincodeType\": \"$LANGUAGE\"
+}"
+
 name="VRA"
 id="doc101"
 dob="02-07-1988"
@@ -235,6 +246,7 @@ doc={"name":"$name","id":"$id","dob":"$dob","bloodgroup":"$bloodgroup"}
                   # --arg dob "$dob" \
                   # --arg bloodgroup "$bloodgroup" \
                   # '{name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup}' )
+
 doctorJSON="$doc"
 
 echo $doctorJSON
