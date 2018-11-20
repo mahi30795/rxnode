@@ -247,7 +247,7 @@ curl -s -X POST \
 	\"chaincodeName\":\"mycc\",
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\"
-	\"args\":[\"a\",\"100\",\"$doctorJSON\"]
+	\"args\":[\"a\",\"100\",\"mahi\"]
 }"
 
 

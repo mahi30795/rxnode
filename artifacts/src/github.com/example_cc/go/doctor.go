@@ -25,7 +25,7 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
 	json.Unmarshal([]byte(args[2]), &newDoc)
 	var doc = Doc{Name: newDoc.Name, Id: newDoc.Id, Hospital: newDoc.Hospital, Department: newDoc.Department}
 	docAsBytes, _ := json.Marshal(doc)
-	stub.PutState(args[1], docAsBytes)
+	stub.PutState(args[1], []byte(args[2]))
 
 	// Notify listeners that an event "eventInvoke" have been executed (check line 19 in the file invoke.go)
 	err := stub.SetEvent("eventCreateDoc", []byte{})
