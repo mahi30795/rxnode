@@ -21,11 +21,11 @@ func (t *SimpleChaincode) Init(stub shim.ChaincodeStubInterface) pb.Response {
 
 	_, args := stub.GetFunctionAndParameters()
 	logger.info("=========In doc_create========")
-	var newDoc Doc
-	json.Unmarshal([]byte(args[2]), &newDoc)
-	var doc = Doc{Name: newDoc.Name, Id: newDoc.Id, Hospital: newDoc.Hospital, Department: newDoc.Department}
-	docAsBytes, _ := json.Marshal(doc)
-	stub.PutState(args[1], []byte(args[2]))
+	// var newDoc Doc
+	// json.Unmarshal([]byte(args[2]), &newDoc)
+	// var doc = Doc{Name: newDoc.Name, Id: newDoc.Id, Hospital: newDoc.Hospital, Department: newDoc.Department}
+	// docAsBytes, _ := json.Marshal(doc)
+	stub.PutState(args[0], []byte(args[1]))
 
 	// Notify listeners that an event "eventInvoke" have been executed (check line 19 in the file invoke.go)
 	err := stub.SetEvent("eventCreateDoc", []byte{})
