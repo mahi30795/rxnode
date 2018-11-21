@@ -40,14 +40,10 @@ function setChaincodePath(){
 	LANGUAGE=`echo "$LANGUAGE" | tr '[:upper:]' '[:lower:]'`
 	case "$LANGUAGE" in
 		"golang")
-		CC_SRC_PATH="github.com/example_cc/go/main.go"
-    example="github.com/example_cc/go/"
-    doctor="github.com/example_cc/go//doctor.go"
-    patient=$CC_SRC_PATH"/patient.go"
-    pharmacy=$CC_SRC_PATH"/pharmacy.go"
+		CC_SRC_PATH="github.com/example_cc/go"
 		;;
 		"node")
-		CC_SRC_PATH="$PWD/artifacts/src/gfithub.com/example_cc/node"
+		CC_SRC_PATH="$PWD/artifacts/src/github.com/example_cc/node"
 		;;
 		*) printf "\n ------ Language $LANGUAGE is not supported yet ------\n"$
 		exit 1
@@ -184,7 +180,7 @@ curl -s -X POST \
   -d "{
 	\"peers\": [\"peer0.org1.rxmed.com\",\"peer1.org1.rxmed.com\",\"peer2.org1.rxmed.com\",\"peer3.org1.rxmed.com\"],
 	\"chaincodeName\":\"mycc\",
-	\"chaincodePath\":\"$example\",
+	\"chaincodePath\":\"$CC_SRC_PATH\",
 	\"chaincodeType\": \"$LANGUAGE\",
 	\"chaincodeVersion\":\"v0\"
 }"
@@ -199,8 +195,8 @@ curl -s -X POST \
   -H "content-type: application/json" \
   -d "{
 	\"peers\": [\"peer0.org2.rxmed.com\",\"peer1.org2.rxmed.com\",\"peer2.org2.rxmed.com\",\"peer3.org2.rxmed.com\"],
-	\"chaincodeName\":\"mycc1\",
-	\"chaincodePath\":\"$doctor\",
+	\"chaincodeName\":\"mycc\",
+	\"chaincodePath\":\"$CC_SRC_PATH\",
 	\"chaincodeType\": \"$LANGUAGE\",
 	\"chaincodeVersion\":\"v0\"
 }"
@@ -215,29 +211,15 @@ curl -s -X POST \
   -H "content-type: application/json" \
   -d "{
 	\"peers\": [\"peer0.org3.rxmed.com\",\"peer1.org3.rxmed.com\",\"peer2.org3.rxmed.com\",\"peer3.org3.rxmed.com\"],
-	\"chaincodeName\":\"mycc2\",
+	\"chaincodeName\":\"mycc\",
 	\"chaincodePath\":\"$CC_SRC_PATH\",
 	\"chaincodeType\": \"$LANGUAGE\",
 	\"chaincodeVersion\":\"v0\"
 }"
 echo
-name="VRA"
-id="doc101"
-dob="02-07-1988"
-bloodgroup="O+ve"
+echo
 
-doc={"name":"$name","id":"$id","dob":"$dob","bloodgroup":"$bloodgroup"}
-# doc=$( jq -n -r \
-#                  --arg name "$name" \
-                  # --arg id "$id" \
-                  # --arg dob "$dob" \
-                  # --arg bloodgroup "$bloodgroup" \
-                  # '{name: $name, id: $id, dob: $dob, bloodgroup: $bloodgroup}' )
-doctorJSON="$doc"
-
-echo $doctorJSON
 echo "POST instantiate chaincode on Org1"
-
 echo
 curl -s -X POST \
   http://localhost:4000/channels/rxmed/chaincodes \
@@ -249,20 +231,8 @@ curl -s -X POST \
 	\"chaincodeType\": \"$LANGUAGE\",
 	\"args\":[\"a\",\"100\",\"b\",\"200\"]
 }"
-echo "POST instantiate chaincode on Org2"
-
 echo
-curl -s -X POST \
-  http://localhost:4000/channels/rxmed/chaincodes \
-  -H "authorization: Bearer $ORG1_TOKEN" \
-  -H "content-type: application/json" \
-  -d "{
-	\"chaincodeName\":\"mycc1\",
-	\"chaincodeVersion\":\"v0\",
-	\"chaincodeType\": \"$LANGUAGE\",
-  \"fcn\":\"Init\",
-	\"args\":[\"a\",\"100\"]
-}"
+echo
 
 echo "POST invoke chaincode on peers of Org1 and Org2 and Org3"
 echo
@@ -270,11 +240,11 @@ TRX_ID=$(curl -s -X POST \
   http://localhost:4000/channels/rxmed/chaincodes/mycc \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json" \
-  -d "{
-	\"peers\": [\"peer0.org1.rxmed.com\",\"peer0.org2.rxmed.com\",\"peer0.org3.rxmed.com\"],
-	\"fcn\":\"doc_create\",
-	\"args\":[\"a\",\"100\",\"$doctorJSON\"]
-}")
+  -d '{
+	"peers": ["peer0.org1.rxmed.com","peer0.org2.rxmed.com","peer0.org3.rxmed.com"],
+	"fcn":"move",
+	"args":["a","b","10"]
+}')
 echo "Transaction ID is $TRX_ID"
 echo
 echo
