@@ -41,7 +41,7 @@ function setChaincodePath(){
 	case "$LANGUAGE" in
 		"golang")
 		CC_SRC_PATH="github.com/example_cc/go/main.go"
-    example="github.com/example_cc/go/example_cc.go"
+    example="github.com/example_cc/go/"
     doctor="github.com/example_cc/go//doctor.go"
     patient=$CC_SRC_PATH"/patient.go"
     pharmacy=$CC_SRC_PATH"/pharmacy.go"
@@ -247,7 +247,6 @@ curl -s -X POST \
 	\"chaincodeName\":\"mycc\",
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
-  \"fcn\":\"Init\",
 	\"args\":[\"a\",\"100\",\"b\",\"200\"]
 }"
 echo "POST instantiate chaincode on Org2"
