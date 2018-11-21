@@ -239,17 +239,15 @@ echo "POST instantiate chaincode on Org1"
 
 echo
 curl -s -X POST \
-  http://localhost:4000/channels/rxmed/chaincodes \
+  http://localhost:4000/channels/channel/chaincodes \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json" \
   -d "{
-  \"peers\": [\"peer0.org1.rxmed.com\",\"peer0.org2.rxmed.com\",\"peer0.org3.rxmed.com\"],
 	\"chaincodeName\":\"mycc\",
 	\"chaincodeVersion\":\"v0\",
-	\"chaincodeType\": \"$LANGUAGE\"
-	\"args\":[\"a\",\"mahi\"]
+	\"chaincodeType\": \"$LANGUAGE\",
+	\"args\":[\"a\",\"100\"]
 }"
-
 
 
 echo "POST invoke chaincode on peers of Org1 and Org2 and Org3"
