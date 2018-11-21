@@ -239,7 +239,7 @@ echo "POST instantiate chaincode on Org1"
 
 echo
 curl -s -X POST \
-  http://localhost:4000/channels/channel/chaincodes \
+  http://localhost:4000/channels/rxmed/chaincodes \
   -H "authorization: Bearer $ORG1_TOKEN" \
   -H "content-type: application/json" \
   -d "{
