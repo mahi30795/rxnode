@@ -45,7 +45,7 @@ var instantiateChaincode = async function(peers, channelName, chaincodeName, cha
 			chaincodeId: chaincodeName,
 			chaincodeType: chaincodeType,
 			chaincodeVersion: chaincodeVersion,
-			// fcn:fcn,
+			fcn:fcn,
 			args: args,
 			txId: tx_id
 		};

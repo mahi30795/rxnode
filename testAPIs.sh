@@ -178,6 +178,7 @@ curl -s -X POST \
 	\"chaincodeName\":\"mycc\",
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
+  \"fcn\":\"Init\",
 	\"args\":[\"a\",\"100\",\"b\",\"200\"]
 }"
 echo
