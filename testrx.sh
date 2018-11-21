@@ -247,6 +247,7 @@ curl -s -X POST \
 	\"chaincodeName\":\"mycc\",
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
+  \"fcn\":\"Init\",
 	\"args\":[\"a\",\"100\",\"b\",\"200\"]
 }"
 echo "POST instantiate chaincode on Org2"
@@ -260,6 +261,7 @@ curl -s -X POST \
 	\"chaincodeName\":\"mycc1\",
 	\"chaincodeVersion\":\"v0\",
 	\"chaincodeType\": \"$LANGUAGE\",
+  \"fcn\":\"Init\",
 	\"args\":[\"a\",\"100\"]
 }"
 
