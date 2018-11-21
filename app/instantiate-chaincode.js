@@ -45,11 +45,10 @@ var instantiateChaincode = async function(peers, channelName, chaincodeName, cha
 			chaincodeId: chaincodeName,
 			chaincodeType: chaincodeType,
 			chaincodeVersion: chaincodeVersion,
-			fcn:fcn,
 			args: args,
 			txId: tx_id
 		};
-		console.log(request);
+
 		logger.debug('Transaction request: ' + JSON.stringify(request));
 		let results = null;
 		if (chaincodeVersion == 'v0') {
